@@ -2,12 +2,13 @@ use std::iter::{zip, Sum};
 use std::ops::{Add, Deref, Mul, Neg, Sub};
 
 use num_traits::{One, Zero};
+use serde::{Deserialize, Serialize};
 
 use crate::core::fields::qm31::SecureField;
 use crate::core::fields::{ExtensionOf, Field};
 
 /// Univariate polynomial stored as coefficients in the monomial basis.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone,Serialize,Deserialize)]
 pub struct UnivariatePoly<F: Field>(Vec<F>);
 
 impl<F: Field> UnivariatePoly<F> {

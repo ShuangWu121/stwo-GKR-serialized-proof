@@ -8,6 +8,7 @@ use std::iter::zip;
 
 use itertools::Itertools;
 use num_traits::{One, Zero};
+use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
 use super::utils::UnivariatePoly;
@@ -177,7 +178,7 @@ pub fn partially_verify(
     Ok((assignment, claim))
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone,Serialize,Deserialize)]
 pub struct SumcheckProof {
     pub round_polys: Vec<UnivariatePoly<SecureField>>,
 }

@@ -8,6 +8,7 @@ use crate::core::fields::m31::BaseField;
 use crate::core::fields::qm31::SecureField;
 use crate::core::lookups::sumcheck;
 use crate::core::lookups::utils::Fraction;
+use serde::{Deserialize, Serialize};
 
 /// Partially verifies a batch GKR proof.
 ///
@@ -149,6 +150,7 @@ pub fn partially_verify_batch(
 }
 
 /// Batch GKR proof.
+#[derive(Serialize, Deserialize)]
 pub struct GkrBatchProof {
     /// Sum-check proof for each layer.
     pub sumcheck_proofs: Vec<SumcheckProof>,
@@ -159,6 +161,7 @@ pub struct GkrBatchProof {
 }
 
 /// Values of interest obtained from the execution of the GKR protocol.
+#[derive(Serialize, Deserialize)]
 pub struct GkrArtifact {
     /// Out-of-domain (OOD) point for evaluating columns in the input layer.
     pub ood_point: Vec<SecureField>,
@@ -217,7 +220,7 @@ impl Gate {
 struct InvalidNumMaskColumnsError;
 
 /// Stores two evaluations of each column in a GKR layer.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone,Serialize, Deserialize)]
 pub struct GkrMask {
     columns: Vec<[SecureField; 2]>,
 }
